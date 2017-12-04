@@ -30,8 +30,7 @@ public class Dog : MonoBehaviour {
         {
             Vector2 velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, _rigidbody2D.velocity.y);
             _rigidbody2D.velocity = velocity;
-            _animator.SetFloat("velocityX", Mathf.Abs(velocity.x));
-            _spriteRenderer.flipX = velocity.x > 0;
+            _animator.SetFloat("velocityX", velocity.x);
         }
 	}
 }
