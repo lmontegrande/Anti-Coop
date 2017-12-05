@@ -64,7 +64,7 @@ public class GameManager : Photon.PunBehaviour, IPunObservable {
 
     private void ButtonPressed2()
     {
-        photonView.RPC("RCPPress2", PhotonTargets.All, null);
+        photonView.RPC("RPCPress2", PhotonTargets.All, null);
     }
 
     private void ButtonReleased2()
