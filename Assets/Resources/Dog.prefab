@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 114267046055025620}
-  speed: 2
+  speed: 4
   useCoolDown: 2
 --- !u!212 &212010184046634708
 SpriteRenderer:
