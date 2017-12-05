@@ -38,7 +38,6 @@ public class Level_Button : Photon.PunBehaviour, IPunObservable {
         {
             Debug.Log("WIN");
             PhotonNetwork.LoadLevel(levelToLoad);
-            PhotonNetwork.Disconnect();
         }
     }
 
