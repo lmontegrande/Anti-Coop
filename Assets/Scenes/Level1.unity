@@ -290,6 +290,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!114 &57695478 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114311034411641352, guid: e029b26ef1c2ba042885eeef7af67f4a,
+    type: 2}
+  m_PrefabInternal: {fileID: 57695475}
+  m_Script: {fileID: 11500000, guid: 62eaf5589735114429496092299d969b, type: 3}
 --- !u!4 &57695481 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4899899985541634, guid: e029b26ef1c2ba042885eeef7af67f4a,
@@ -624,7 +630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4581ac79418b1784586a70d518c79272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameButtons: []
+  gameButtons:
+  - {fileID: 57695478}
+  - {fileID: 34396576}
 --- !u!4 &444733856
 Transform:
   m_ObjectHideFlags: 0
