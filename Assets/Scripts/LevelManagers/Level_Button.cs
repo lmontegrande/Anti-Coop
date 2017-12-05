@@ -34,7 +34,7 @@ public class Level_Button : Photon.PunBehaviour, IPunObservable {
     private void RPCPress()
     {
         buttonsPressed++;
-        if (buttonsPressed >= gameButtons.Length-1)
+        if (buttonsPressed >= gameButtons.Length)
         {
             Debug.Log("WIN");
             PhotonNetwork.LoadLevel(levelToLoad);
