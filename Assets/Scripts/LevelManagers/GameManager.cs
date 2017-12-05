@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level_Button : Photon.PunBehaviour, IPunObservable {
+public class GameManager : Photon.PunBehaviour, IPunObservable {
 
     public GameButton[] gameButtons;
-    public string levelToLoad;
 
     private int buttonsPressed;
 
@@ -37,7 +36,6 @@ public class Level_Button : Photon.PunBehaviour, IPunObservable {
         if (buttonsPressed >= gameButtons.Length)
         {
             Debug.Log("WIN");
-            PhotonNetwork.LoadLevel(levelToLoad);
         }
     }
 

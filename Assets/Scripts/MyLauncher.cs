@@ -4,6 +4,7 @@ public class MyLauncher : Photon.PunBehaviour
 {
     public PhotonLogLevel logLevel;
     public GameObject playerPrefab;
+    public GameObject[] spawnLocations;
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     public byte MaxPlayersPerRoom = 4;
     string _gameVersion = "1";
@@ -45,7 +46,7 @@ public class MyLauncher : Photon.PunBehaviour
     public override void OnJoinedRoom()
     {
         Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-        PhotonNetwork.Instantiate(this.playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(this.playerPrefab.name, spawnLocations[PhotonNetwork.playerList.Length - 1].transform.position, Quaternion.identity, 0);
         isMaster = PhotonNetwork.isMasterClient;
     }
     
