@@ -22,15 +22,17 @@ public class GameButton : Photon.PunBehaviour, Interactable {
 
     public IEnumerator PressButtonRoutine()
     {
+        isButtonPressed = true;
         if (OnButtonPressed != null)
             OnButtonPressed.Invoke();
-        photonView.RPC("RPCPress", PhotonTargets.All, true);
+        photonView.RPC("RPCPressButton", PhotonTargets.All, true);
 
         yield return new WaitForSeconds(releaseTime);
 
         if (OnButtonReleased != null)
             OnButtonReleased.Invoke();
-        photonView.RPC("RPCPress", PhotonTargets.All, false);
+        photonView.RPC("RPCPressButton", PhotonTargets.All, false);
+        isButtonPressed = false;
     }
 
     public void Interact()
@@ -42,17 +44,15 @@ public class GameButton : Photon.PunBehaviour, Interactable {
     }
 
     [PunRPC]
-    private void RPCPress(bool isPressed)
+    private void RPCPressButton(bool isPressed)
     {
         if (isPressed)
         {
             _animator.SetBool("isPressed", true);
-            isButtonPressed = true;
         }
         else
         {
             _animator.SetBool("isPressed", false);
-            isButtonPressed = false;
         }
     }
 
