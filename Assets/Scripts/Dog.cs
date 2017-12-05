@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dog : MonoBehaviour {
 
+    public Slider slider;
     public float speed = 2f;
+    public float useCoolDown = 2f;
 
     private PhotonView _photonView;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private Interactable selectedInteractable;
+
+    private float useCoolDownTimer;
 
     private void Start()
     {
@@ -23,6 +28,7 @@ public class Dog : MonoBehaviour {
             Camera.main.GetComponent<CameraFollow>().target = gameObject;
         } else {
             _rigidbody2D.isKinematic = true;
+            slider.gameObject.SetActive(false);
         }
     }
 
@@ -34,6 +40,7 @@ public class Dog : MonoBehaviour {
 
         HandleAxisInput();
         HandleInput();
+        HandleCooldowns();
 	}
 
     private void HandleAxisInput()
@@ -47,10 +54,20 @@ public class Dog : MonoBehaviour {
     {
         if (Input.GetButtonDown("Use"))
         {
-            if (selectedInteractable != null)
+            if (selectedInteractable != null && useCoolDownTimer >= useCoolDown)
             {
+                useCoolDownTimer = 0;
                 selectedInteractable.Interact();
             }
+        }
+    }
+
+    private void HandleCooldowns()
+    {
+        if (useCoolDownTimer < useCoolDown)
+        {
+            useCoolDownTimer += Time.deltaTime;
+            slider.value = Mathf.Clamp(useCoolDownTimer / useCoolDown, 0, 1);
         }
     }
 
