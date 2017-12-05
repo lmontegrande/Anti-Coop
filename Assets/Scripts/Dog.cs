@@ -10,6 +10,7 @@ public class Dog : MonoBehaviour {
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private Interactable selectedInteractable;
 
     private void Start()
     {
@@ -25,12 +26,47 @@ public class Dog : MonoBehaviour {
         }
     }
 
-    void Update () {
-		if (_photonView.isMine)
-        {
-            Vector2 velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, _rigidbody2D.velocity.y);
-            _rigidbody2D.velocity = velocity;
-            _animator.SetFloat("velocityX", velocity.x);
-        }
+    private void Update ()
+    {
+
+        if (!_photonView.isMine)
+            return;
+
+        HandleAxisInput();
+        HandleInput();
 	}
+
+    private void HandleAxisInput()
+    {
+        Vector2 velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, _rigidbody2D.velocity.y);
+        _rigidbody2D.velocity = velocity;
+        _animator.SetFloat("velocityX", velocity.x);
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetButtonDown("Use"))
+        {
+            if (selectedInteractable != null)
+            {
+                selectedInteractable.Interact();
+            }
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Interactable>() != null)
+        {
+            selectedInteractable = collision.GetComponent<Interactable>();
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Interactable>() != null && collision.GetComponent<Interactable>() == selectedInteractable)
+        {
+            selectedInteractable = null;
+        }
+    }
 }
