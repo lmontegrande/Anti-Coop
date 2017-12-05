@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameButton : Photon.PunBehaviour, IPunObservable, Interactable {
+public class GameButton : Photon.PunBehaviour, Interactable {
 
     public delegate void OnButtonPressedHandler();
     public OnButtonPressedHandler OnButtonPressed;
@@ -20,25 +20,17 @@ public class GameButton : Photon.PunBehaviour, IPunObservable, Interactable {
         _animator = GetComponent<Animator>();
     }
 
-    [PunRPC]
-    public void PressButton()
-    {
-        StartCoroutine(PressButtonRoutine());
-    }
-
     public IEnumerator PressButtonRoutine()
     {
-        _animator.SetBool("isPressed", true);
-        isButtonPressed = true;
         if (OnButtonPressed != null)
             OnButtonPressed.Invoke();
+        photonView.RPC("RPCPress", PhotonTargets.All, true);
 
         yield return new WaitForSeconds(releaseTime);
 
-        _animator.SetBool("isPressed", false);
-        isButtonPressed = false;
         if (OnButtonReleased != null)
             OnButtonReleased.Invoke();
+        photonView.RPC("RPCPress", PhotonTargets.All, false);
     }
 
     public void Interact()
@@ -46,7 +38,22 @@ public class GameButton : Photon.PunBehaviour, IPunObservable, Interactable {
         if (isButtonPressed)
             return;
 
-        photonView.RPC("PressButton", PhotonTargets.All, null);
+        StartCoroutine(PressButtonRoutine());
+    }
+
+    [PunRPC]
+    private void RPCPress(bool isPressed)
+    {
+        if (isPressed)
+        {
+            _animator.SetBool("isPressed", true);
+            isButtonPressed = true;
+        }
+        else
+        {
+            _animator.SetBool("isPressed", false);
+            isButtonPressed = false;
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
