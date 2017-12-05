@@ -63,4 +63,12 @@ public class MyLauncher : Photon.PunBehaviour
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
         }
     }
+
+    public void Disconnect()
+    {
+        if (PhotonNetwork.connected)
+        {
+            PhotonNetwork.Disconnect();
+        }
+    }
 }

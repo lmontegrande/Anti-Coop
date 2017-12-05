@@ -6,6 +6,7 @@ using UnityEngine;
 public class Level_Button : Photon.PunBehaviour, IPunObservable {
 
     public GameButton[] gameButtons;
+    public string levelToLoad;
 
     private int buttonsPressed;
 
@@ -33,9 +34,11 @@ public class Level_Button : Photon.PunBehaviour, IPunObservable {
     private void RPCPress()
     {
         buttonsPressed++;
-        if (buttonsPressed >= gameButtons.Length)
+        if (buttonsPressed >= gameButtons.Length-1)
         {
             Debug.Log("WIN");
+            PhotonNetwork.LoadLevel(levelToLoad);
+            PhotonNetwork.Disconnect();
         }
     }
 
@@ -47,6 +50,6 @@ public class Level_Button : Photon.PunBehaviour, IPunObservable {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
