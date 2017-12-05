@@ -5,51 +5,40 @@ using UnityEngine;
 
 public class GameManager : Photon.PunBehaviour, IPunObservable {
 
-    public GameButton[] gameButtons1;
-    public GameObject[] doors1;
+    public GameButton[] gameButtons;
+    public GameObject[] doors;
 
-    public GameButton[] gameButtons2;
-    public GameObject[] doors2;
-
-    private int buttonsPressed1;
-    private int buttonsPressed2;
+    private int buttonsPressed;
 
     private void Start()
     {
-        buttonsPressed1 = 0;
-        buttonsPressed2 = 0;
+        buttonsPressed = 0;
 
-        foreach(GameButton button in gameButtons1)
+        foreach(GameButton button in gameButtons)
         {
-            button.OnButtonPressed += ButtonPressed1;
-            button.OnButtonReleased += ButtonReleased1;
-        }
-
-        foreach(GameButton button in gameButtons2)
-        {
-            button.OnButtonPressed += ButtonPressed2;
-            button.OnButtonReleased += ButtonReleased2;
+            button.OnButtonPressed += ButtonPressed;
+            button.OnButtonReleased += ButtonReleased;
         }
     }
 
-    private void ButtonPressed1()
+    private void ButtonPressed()
     {
-        photonView.RPC("RPCPress1", PhotonTargets.All, null);
+        photonView.RPC("RPCPress", PhotonTargets.All, null);
     }
 
-    private void ButtonReleased1()
+    private void ButtonReleased()
     {
-        photonView.RPC("RPCRelease1", PhotonTargets.All, null);
+        photonView.RPC("RPCRelease", PhotonTargets.All, null);
     }
 
     [PunRPC]
-    private void RPCPress1()
+    private void RPCPress()
     {
-        buttonsPressed1++;
-        if (buttonsPressed1 >= gameButtons1.Length)
+        buttonsPressed++;
+        if (buttonsPressed >= gameButtons.Length)
         {
             Debug.Log("WIN");
-            foreach(GameObject door in doors1)
+            foreach(GameObject door in doors)
             {
                 door.SetActive(false);
             }
@@ -57,39 +46,9 @@ public class GameManager : Photon.PunBehaviour, IPunObservable {
     }
 
     [PunRPC]
-    private void RPCRelease1()
+    private void RPCRelease()
     {
-        buttonsPressed1--;
-    }
-
-    private void ButtonPressed2()
-    {
-        photonView.RPC("RPCPress2", PhotonTargets.All, null);
-    }
-
-    private void ButtonReleased2()
-    {
-        photonView.RPC("RPCRelease2", PhotonTargets.All, null);
-    }
-
-    [PunRPC]
-    private void RPCPress2()
-    {
-        buttonsPressed2++;
-        if (buttonsPressed2 >= gameButtons2.Length)
-        {
-            Debug.Log("WIN");
-            foreach (GameObject door in doors2)
-            {
-                door.SetActive(false);
-            }
-        }
-    }
-
-    [PunRPC]
-    private void RPCRelease2()
-    {
-        buttonsPressed2--;
+        buttonsPressed--;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
