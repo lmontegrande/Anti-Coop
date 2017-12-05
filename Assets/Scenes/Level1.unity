@@ -1233,7 +1233,13 @@ Prefab:
       propertyPath: releaseTime
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 34396576}
+    m_RemovedComponents:
+    - {fileID: 114104014878091982, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1929000592

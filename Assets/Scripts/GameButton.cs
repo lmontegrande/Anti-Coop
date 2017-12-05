@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameButton : MonoBehaviour, Interactable {
+public class GameButton : Photon.PunBehaviour, IPunObservable, Interactable {
 
     public delegate void OnButtonPressedHandler();
     public OnButtonPressedHandler OnButtonPressed;
@@ -20,7 +20,13 @@ public class GameButton : MonoBehaviour, Interactable {
         _animator = GetComponent<Animator>();
     }
 
-    public IEnumerator PressButton()
+    [PunRPC]
+    public void PressButton()
+    {
+        StartCoroutine(PressButtonRoutine());
+    }
+
+    public IEnumerator PressButtonRoutine()
     {
         _animator.SetBool("isPressed", true);
         isButtonPressed = true;
@@ -40,7 +46,12 @@ public class GameButton : MonoBehaviour, Interactable {
         if (isButtonPressed)
             return;
 
-        StartCoroutine(PressButton());
+        photonView.RPC("PressButton", PhotonTargets.All, null);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //throw new NotImplementedException();
     }
 }
 
