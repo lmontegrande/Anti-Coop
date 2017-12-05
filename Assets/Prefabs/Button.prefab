@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212311282018398872}
   - component: {fileID: 95210495086709012}
   - component: {fileID: 114311034411641352}
+  - component: {fileID: 114458660795118468}
+  - component: {fileID: 114104014878091982}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -59,6 +61,26 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114104014878091982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1219428755062482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isPressed
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &114311034411641352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +92,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62eaf5589735114429496092299d969b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  releaseTime: 1
+--- !u!114 &114458660795118468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1219428755062482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114104014878091982}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!212 &212311282018398872
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -201,6 +201,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1546095956}
     m_Modifications:
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4899899985541634, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.0204377
@@ -236,6 +241,16 @@ Prefab:
     - target: {fileID: 1219428755062482, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
       propertyPath: m_TagString
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: instantiationId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: viewIdField
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
@@ -1241,7 +1256,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555940509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 576.5, y: 361, z: 0}
+  m_LocalPosition: {x: 562.5, y: 361, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1882033823}
@@ -1490,6 +1505,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1546095956}
     m_Modifications:
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4899899985541634, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.9795623
@@ -1529,6 +1549,16 @@ Prefab:
     - target: {fileID: 1219428755062482, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}
       propertyPath: m_Name
       value: Button (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: instantiationId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458660795118468, guid: e029b26ef1c2ba042885eeef7af67f4a,
+        type: 2}
+      propertyPath: viewIdField
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e029b26ef1c2ba042885eeef7af67f4a, type: 2}

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level_Button : Photon.PunBehaviour {
+public class Level_Button : Photon.PunBehaviour, IPunObservable {
 
     public GameButton[] gameButtons;
 
@@ -42,5 +43,10 @@ public class Level_Button : Photon.PunBehaviour {
     private void RPCRelease()
     {
         buttonsPressed--;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new NotImplementedException();
     }
 }

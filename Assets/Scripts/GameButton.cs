@@ -20,21 +20,13 @@ public class GameButton : MonoBehaviour, Interactable {
         _animator = GetComponent<Animator>();
     }
 
-    public void PressButton()
+    public IEnumerator PressButton()
     {
-        if (isButtonPressed)
-            return;
-
         _animator.SetBool("isPressed", true);
         isButtonPressed = true;
         if (OnButtonPressed != null)
             OnButtonPressed.Invoke();
 
-        StartCoroutine(ReleaseButton());
-    }
-
-    public IEnumerator ReleaseButton()
-    {
         yield return new WaitForSeconds(releaseTime);
 
         _animator.SetBool("isPressed", false);
@@ -45,7 +37,10 @@ public class GameButton : MonoBehaviour, Interactable {
 
     public void Interact()
     {
-        PressButton();
+        if (isButtonPressed)
+            return;
+
+        StartCoroutine(PressButton());
     }
 }
 
